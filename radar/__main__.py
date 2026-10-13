@@ -20,6 +20,10 @@ from .logs import setup_logging
 def main(argv: list[str] | None = None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
     cmd = argv[0] if argv else "run"
+    # Windows consoles/pipes default to a legacy code page that can't print the emoji in messages.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     if cmd in ("-h", "--help", "help"):
         print(__doc__)
         return 0

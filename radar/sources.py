@@ -205,7 +205,7 @@ class MockXSource:
 
     def __init__(self, path: str | Path, clock: Clock):
         self.clock = clock
-        self.data = json.loads(Path(path).read_text())
+        self.data = json.loads(Path(path).read_text(encoding="utf-8"))
         self.waves = self.data["waves"]
         self.index = 0
         self.anchor: datetime | None = None

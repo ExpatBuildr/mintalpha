@@ -16,7 +16,7 @@ def _load_dotenv(path: Path) -> None:
     """Minimal .env loader (no extra dependency). Existing env vars win."""
     if not path.exists():
         return
-    for line in path.read_text().splitlines():
+    for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line or line.startswith("#") or "=" not in line:
             continue
@@ -101,7 +101,7 @@ def load_config(path: str | Path | None = None, environ: dict | None = None,
     if load_env_file and environ is None:
         _load_dotenv(ROOT / ".env")
     cfg_path = Path(path or os.environ.get("RADAR_CONFIG") or ROOT / "config.yaml")
-    data = yaml.safe_load(cfg_path.read_text()) or {}
+    data = yaml.safe_load(cfg_path.read_text(encoding="utf-8")) or {}
     env = Env.from_environ(environ)
     src = os.environ if environ is None else environ
     if src.get("DISPLAY_TIMEZONE"):

@@ -38,7 +38,7 @@ class Database:
                 continue
             with self.tx():
                 # executescript() would auto-commit; run statements one by one inside the tx
-                for stmt in _split_sql(f.read_text()):
+                for stmt in _split_sql(f.read_text(encoding="utf-8")):
                     self.conn.execute(stmt)
                 self.conn.execute("INSERT INTO schema_migrations VALUES (?, datetime('now'))", (f.name,))
             applied.append(f.name)
