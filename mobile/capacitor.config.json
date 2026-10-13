@@ -1,0 +1,15 @@
+{
+  "appId": "com.mintalpha.app",
+  "appName": "MintAlpha",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#16236f"
+  },
+  "plugins": {
+    "LocalNotifications": {
+      "smallIcon": "ic_stat_mintalpha",
+      "iconColor": "#2f4fd6"
+    }
+  }
+}

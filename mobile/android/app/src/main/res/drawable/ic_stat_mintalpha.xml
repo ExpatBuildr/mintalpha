@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Status-bar icon: Android draws it as a white silhouette. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp"
+    android:viewportWidth="64" android:viewportHeight="64">
+    <path android:pathData="M32,13a21,21 0,1 1,0 42a21,21 0,1 1,0 -42" android:fillColor="#00000000" android:strokeColor="#FFFFFFFF" android:strokeWidth="3"/>
+    <path android:pathData="M32,21a13,13 0,1 1,0 26a13,13 0,1 1,0 -26" android:fillColor="#00000000" android:strokeColor="#FFFFFFFF" android:strokeWidth="3"/>
+    <path android:pathData="M32,34L32,13A21,21 0,0 1,50.2 23.5Z" android:fillColor="#FFFFFFFF" android:fillAlpha="0.6"/>
+    <path android:pathData="M40.5,14.55L45.45,19.5L40.5,24.45L35.55,19.5Z" android:fillColor="#FFFFFFFF"/>
+    <path android:pathData="M32,30a4,4 0,1 1,0 8a4,4 0,1 1,0 -8" android:fillColor="#FFFFFFFF"/>
+</vector>

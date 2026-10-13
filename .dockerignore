@@ -1,0 +1,11 @@
+.env
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+tests/
+.git/
+mobile/
+*.md
+!README.md

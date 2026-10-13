@@ -1,0 +1,25 @@
+# HTTPS for the radar server so the MintAlpha phone app can reach it.
+# 1. Point a DNS A record (e.g. radar.yourdomain.com) at your VPS.
+# 2. Install Caddy (https://caddyserver.com/docs/install), replace the domain below,
+#    copy this file to /etc/caddy/Caddyfile and run: sudo systemctl reload caddy
+# Caddy gets and renews the TLS certificate automatically.
+
+radar.yourdomain.com {
+	encode gzip
+
+	# Phone app API (bearer token) and the installable web app
+	handle /api/v1/* {
+		reverse_proxy 127.0.0.1:8080
+	}
+	handle /app* {
+		reverse_proxy 127.0.0.1:8080
+	}
+	handle /healthz {
+		reverse_proxy 127.0.0.1:8080
+	}
+
+	# Dashboard: set DASHBOARD_TOKEN in .env before exposing it, or delete this block
+	handle {
+		reverse_proxy 127.0.0.1:8080
+	}
+}

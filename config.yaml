@@ -1,0 +1,136 @@
+# Free Mint Radar configuration.
+# Secrets never go here — they live in environment variables (.env).
+# Values marked (runtime) can also be changed from Telegram with /set and are
+# stored in the database, overriding this file.
+
+app:
+  display_timezone: Asia/Manila      # times in alerts are shown in UTC + this zone
+  db_path: data/radar.db
+  backup_dir: data/backups
+  backup_interval_hours: 24
+  backup_keep: 7
+  log_level: INFO
+
+discovery:
+  poll_interval_seconds: 900          # (runtime) how often discovery searches run
+  followup_interval_seconds: 1800     # (runtime) how often tracked project accounts are re-checked
+  max_results_per_query: 10           # X recent search accepts 10..100; each returned post is a billed read
+  daily_read_budget: 300              # (runtime) hard cap on X post reads per UTC day (~$1.50/day at $0.005)
+  monthly_read_budget: 9000           # (runtime) hard cap per calendar month (~$45/month at $0.005)
+  pace_budget: true                   # spread the daily budget across the day instead of spending it at once
+  pace_burst: 20                      # reads allowed ahead of the pace
+  cost_per_read_usd: 0.005            # used for cost estimates only; X bills you, not this number
+  query_max_length: 512               # recent-search query length limit for self-serve access
+  query_suffix: "-is:retweet -is:reply lang:en"
+  initial_lookback_minutes: 30        # first run for a query never backfills further than this (saves money)
+  search_phrases:
+    - "free mint"
+    - "free nft mint"
+    - "freemint"
+    - "0 eth mint"
+    - "free claim nft"
+    - "mint is live free"
+    - "upcoming free mint"
+    - "ordinals free mint"
+    - "free mint solana"
+    - "free mint base"
+  # Accounts that post about many projects (drop aggregators, alpha callers).
+  # Posts from these never make the author the "project".
+  aggregator_accounts: []
+  # Platform / infra accounts that should never be treated as the project.
+  platform_handles: [opensea, magiceden, me_ordinals, zora, base, solana, ethereum, polygon, blur_io, tensor_hq, launchmynft, highlight_xyz, manifoldxyz, scatterdotart, coinbase]
+  follow_project_accounts: true       # re-check tracked projects' own accounts for updates
+
+networks:
+  ethereum:
+    enabled: true
+    label: Ethereum
+    keywords: ['\bethereum\b', '\beth\b', '\bmainnet\b', '\berc-?721\b', '\berc-?1155\b']
+    strong_keywords: ['\bon ethereum\b', '\beth mainnet\b']
+    fee_note: "Free = 0 ETH mint price. You still pay L1 gas (can be several dollars or more when busy); some contracts/platforms add a per-mint fee."
+  base:
+    enabled: true
+    label: Base
+    keywords: ['#base\b', '@base\b']
+    strong_keywords: ['\bon base\b', '\bbase chain\b', '\bbasechain\b', '\bbase network\b', '\bbase mainnet\b']
+    fee_note: "Free = 0 ETH price on Base (L2). Gas is usually cents, but platforms such as Zora often charge a small fixed protocol fee per mint."
+  polygon:
+    enabled: true
+    label: Polygon
+    keywords: ['\bmatic\b', '\$pol\b']
+    strong_keywords: ['\bpolygon\b', '\bon pol\b']
+    fee_note: "Free = 0 POL price. Gas is normally fractions of a cent; check for platform fees."
+  solana:
+    enabled: true
+    label: Solana
+    keywords: ['\bsol\b', '\bcnfts?\b', '\bmetaplex\b']
+    strong_keywords: ['\bsolana\b', '\bon sol\b', '\bcompressed nfts?\b']
+    fee_note: "Free = 0 SOL price, but you still pay network fees and account rent (roughly 0.01-0.02 SOL for a standard NFT; compressed NFTs cost far less) plus any launchpad fee."
+  bitcoin_ordinals:
+    enabled: true
+    label: Bitcoin Ordinals
+    keywords: ['\bbtc\b', '\bbitcoin\b', '\binscribe\b', '\binscriptions?\b']
+    strong_keywords: ['\bordinals?\b']
+    fee_note: "Free usually means no creator price only. You pay inscription + Bitcoin network fees, which depend on mempool congestion and can be significant."
+  abstract:
+    enabled: false
+    label: Abstract
+    keywords: []
+    strong_keywords: ['\babstract chain\b', '\bon abstract\b']
+    fee_note: "Free = 0 ETH price on Abstract (L2); low gas, check platform fees."
+  apechain:
+    enabled: false
+    label: ApeChain
+    keywords: []
+    strong_keywords: ['\bapechain\b']
+    fee_note: "Free = 0 APE price; low gas, check platform fees."
+
+reminders:
+  before_launch_minutes: [1440, 60]   # 24h and 1h before an exactly-known launch
+  live_repeat_minutes: 30             # (runtime) nag interval while a mint is live and unresolved
+  date_unknown_digest_hours: 12       # (runtime) digest of projects with no exact time
+  catchup_grace_minutes: 10           # after downtime, send one-shot reminders this late at most
+  auto_end_live_after_hours: null     # null = live projects nag until you resolve them
+  no_repeat_for_high_risk: true       # high-risk (likely scam) projects get one live alert, no 30-min nags
+  tick_seconds: 30
+
+verification:
+  fetch_official_sites: true          # fetch website/mint pages to look for price evidence
+  timeout_seconds: 10
+  max_bytes: 500000
+
+classifier:
+  use_llm: false                      # true + ANTHROPIC_API_KEY = LLM fills gaps (never dates)
+  model: claude-haiku-5-5
+  max_tokens: 400
+
+security:
+  known_platforms:
+    opensea.io: OpenSea
+    magiceden.io: Magic Eden
+    magiceden.us: Magic Eden
+    zora.co: Zora
+    highlight.xyz: Highlight
+    manifold.xyz: Manifold
+    app.manifold.xyz: Manifold
+    launchmynft.io: LaunchMyNFT
+    scatter.art: Scatter
+    mint.fun: mint.fun
+    fxhash.xyz: fx(hash)
+    tensor.trade: Tensor
+    ordinals.com: ordinals.com
+    gamma.io: Gamma
+    unisat.io: UniSat
+    rarible.com: Rarible
+  shortener_domains: [bit.ly, tinyurl.com, cutt.ly, rb.gy, is.gd, ow.ly, shorturl.at, t.ly, buff.ly, tiny.cc, rebrand.ly, s.id, lnkd.in]
+  protected_brands: [opensea, magiceden, zora, blur, tensor, metamask, phantom, uniswap, coinbase, rarible, manifold, highlight, unisat]
+  risky_tlds: [top, click, xin, rest, cfd, sbs, cyou, buzz, monster, icu]
+  min_author_followers: 100
+
+telegram:
+  poll_timeout_seconds: 30
+
+dashboard:
+  enabled: true
+  host: 127.0.0.1                     # keep local; reach it via SSH tunnel or a reverse proxy with auth
+  port: 8080

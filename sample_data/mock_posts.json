@@ -1,0 +1,101 @@
+{
+  "_comment": "Fictional posts for mock mode. {t+26h|FMT} renders a time relative to the first poll (UTC), so dates are always in the future. Each poll returns the next wave.",
+  "waves": [
+    [
+      {
+        "id": "900001",
+        "author": "pixelpond_xyz",
+        "author_name": "Pixel Pond",
+        "followers": 8400,
+        "created_offset_minutes": -5,
+        "text": "Pixel Pond free mint on Base 🐸 {t+26h|%B %d} at {t+26h|%H:%M} UTC. 0 ETH, 3,333 supply, public FCFS. Mint: https://pixelpond.xyz/mint",
+        "urls": ["https://pixelpond.xyz/mint"]
+      },
+      {
+        "id": "900002",
+        "author": "nftdropsdaily",
+        "author_name": "NFT Drops Daily",
+        "followers": 52000,
+        "created_offset_minutes": -3,
+        "text": "🚨 FREE MINT ALERT: \"Sol Sprouts\" by @solsprouts — free mint on Solana, date TBA. Allowlist open now.",
+        "urls": []
+      },
+      {
+        "id": "900003",
+        "author": "coffeeguy",
+        "author_name": "Coffee Guy",
+        "followers": 300,
+        "created_offset_minutes": -2,
+        "text": "GM fam, free coffee at the office today ☕",
+        "urls": []
+      },
+      {
+        "id": "900004",
+        "author": "0pensea_claims",
+        "author_name": "OpenSea Rewards",
+        "followers": 12,
+        "created_offset_minutes": -1,
+        "text": "Free NFT claim is live! Connect wallet to claim your free mint now, only 10 minutes left: https://opensea-claim.top/free",
+        "urls": ["https://opensea-claim.top/free"]
+      },
+      {
+        "id": "900005",
+        "author": "satoshishards",
+        "author_name": "Satoshi Shards",
+        "followers": 2100,
+        "created_offset_minutes": -1,
+        "text": "Our Ordinals free mint: Satoshi Shards inscribing {t+90m|%b %d} {t+90m|%H:%M} UTC. Free — you pay network fees only. https://magiceden.io/ordinals/launchpad/satoshi-shards",
+        "urls": ["https://magiceden.io/ordinals/launchpad/satoshi-shards"]
+      }
+    ],
+    [
+      {
+        "id": "900001",
+        "author": "pixelpond_xyz",
+        "author_name": "Pixel Pond",
+        "followers": 8400,
+        "created_offset_minutes": -60,
+        "text": "(duplicate fetch of the first Pixel Pond post — must not create anything new)",
+        "urls": []
+      },
+      {
+        "id": "900006",
+        "author": "alphahunter",
+        "author_name": "Alpha Hunter",
+        "followers": 9100,
+        "created_offset_minutes": -2,
+        "text": "Don't sleep on @pixelpond_xyz — Pixel Pond free mint tomorrow on Base!",
+        "urls": []
+      },
+      {
+        "id": "900007",
+        "author": "pixelpond_xyz",
+        "author_name": "Pixel Pond",
+        "followers": 8400,
+        "created_offset_minutes": -1,
+        "text": "Update: Pixel Pond mint moved to {t+30h|%B %d} {t+30h|%H:%M} UTC so more of you can make it. Still a free mint, 0 ETH on Base.",
+        "urls": []
+      },
+      {
+        "id": "900008",
+        "author": "solsprouts",
+        "author_name": "Sol Sprouts",
+        "followers": 4300,
+        "created_offset_minutes": -1,
+        "text": "Sol Sprouts free mint date locked: {t+3d|%B %d}. Exact time soon. Our allowlist closes tonight. Free mint on Solana.",
+        "urls": []
+      }
+    ],
+    [
+      {
+        "id": "900009",
+        "author": "pixelpond_xyz",
+        "author_name": "Pixel Pond",
+        "followers": 8400,
+        "created_offset_minutes": -1,
+        "text": "Pixel Pond mint is LIVE now! Free mint, 0 ETH on Base. https://pixelpond.xyz/mint",
+        "urls": ["https://pixelpond.xyz/mint"]
+      }
+    ]
+  ]
+}

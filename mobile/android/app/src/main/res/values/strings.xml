@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MintAlpha</string>
+    <string name="title_activity_main">MintAlpha</string>
+    <string name="package_name">com.mintalpha.app</string>
+    <string name="custom_url_scheme">com.mintalpha.app</string>
+</resources>

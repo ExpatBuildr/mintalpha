@@ -1,0 +1,22 @@
+{
+  "name": "mintalpha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MintAlpha Android app (Capacitor) for Free Mint Radar",
+  "scripts": {
+    "copy-web": "node scripts/copy-web.mjs",
+    "sync": "npm run copy-web && npx cap sync android",
+    "open": "npx cap open android",
+    "build:debug": "npm run sync && cd android && ./gradlew assembleDebug",
+    "serve": "npm run copy-web && npx http-server www -p 9000 -c-1"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/local-notifications": "8.3.1"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3"
+  }
+}

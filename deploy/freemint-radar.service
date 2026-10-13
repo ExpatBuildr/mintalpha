@@ -1,0 +1,25 @@
+# systemd unit for running without Docker.
+# Install: sudo cp deploy/freemint-radar.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable --now freemint-radar
+[Unit]
+Description=Free Mint Radar (X -> Telegram free NFT mint tracker)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=radar
+WorkingDirectory=/opt/freemint-radar
+EnvironmentFile=/opt/freemint-radar/.env
+ExecStart=/opt/freemint-radar/.venv/bin/python -m radar run
+Restart=always
+RestartSec=10
+# hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/freemint-radar/data
+
+[Install]
+WantedBy=multi-user.target

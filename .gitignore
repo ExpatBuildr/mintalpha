@@ -1,0 +1,11 @@
+.env
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+mobile/node_modules/
+mobile/android/app/build/
+mobile/android/build/
+mobile/android/.gradle/
+mobile/android/local.properties
